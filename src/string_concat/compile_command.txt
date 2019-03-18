@@ -1,0 +1,1 @@
+emcc string_concat.cpp -Os -s WASM=1 -s "EXPORTED_FUNCTIONS=['_malloc']" -o module.js -std=c++11  -s ASSERTIONS=1

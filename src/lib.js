@@ -8,7 +8,7 @@ var importObject = {
 };
 
 
-function compileWasm(wasmFile) {
+export function compileWasm(wasmFile) {
   var wasmModule = fetch(wasmFile).then(response => 
     response.arrayBuffer()
   ).then(bytes =>
@@ -19,7 +19,16 @@ function compileWasm(wasmFile) {
   return wasmModule
 }
 
-export default compileWasm
+export function getModule(wasmFile) {
+  var wasmModule = fetch(wasmFile).then(response => 
+    response.arrayBuffer()
+  ).then(bytes => {
+    var Module = new WebAssembly.Module(bytes)
+    return Module
+  }).catch(e => console.log(e))
+  return wasmModule
+}
+
 
 // var wasmModule = compileWasm('fib.wasm')
 // wasmModule.then(results =>
